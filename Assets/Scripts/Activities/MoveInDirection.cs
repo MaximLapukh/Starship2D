@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class MoveInDirection : Activity<Transform>
 {
-    private Vector2 _direction;
+    private Vector3 _direction;
     private float _speed;
-    public MoveInDirection(Transform transform, in Vector2 direction, in float speed) : base(transform)
+    public MoveInDirection(Transform transform) : base(transform)
     {
-        SetDirection(direction);
-        SetSpeed(speed);
+        _direction = Vector3.zero;
+        _speed = 0;
     }
-    public void SetDirection(in Vector2 direction)
+    public void SetDirection(in Vector3 direction)
     {
         _direction = direction;
+        Debug.Log(_direction);
     }
     public void SetSpeed(in float speed)
     {
@@ -21,7 +22,6 @@ public class MoveInDirection : Activity<Transform>
     }
     public override void Update()
     {
-        Debug.Log(_direction);
         _t.Translate(_direction * _speed * Time.deltaTime);
     }
 }
