@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         _moveinDirection.SetSpeed(_shipData.Speed);
+        _moveinDirection.SetAcceleration(_shipData.Acceleration);
         _regularRotate.SetSpeed(_shipData.SpeedRotation);
 
         foreach (var item in _activities)
