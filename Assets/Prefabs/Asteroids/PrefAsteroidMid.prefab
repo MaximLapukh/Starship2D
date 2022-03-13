@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 6822826552191287540}
   - component: {fileID: 6822826552191287541}
   - component: {fileID: 6822826552191287542}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: PrefAsteroidMid
   m_TagString: Untagged
   m_Icon: {fileID: 0}

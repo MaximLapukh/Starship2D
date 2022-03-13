@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     {
         _activities = new List<ActivityBase<Transform>>();
 
-        _moveinDirection = new MoveInDirection(transform);
+        _moveinDirection = new MoveInDirScreen(transform, Camera.main);
         _activities.Add(_moveinDirection);
 
         _regularRotate = new RegularRotate(transform);

@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 750637077466725695}
   - component: {fileID: 750637077466725694}
   - component: {fileID: 750637077466725693}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: PrefAsteroidLow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
