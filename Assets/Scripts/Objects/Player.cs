@@ -84,4 +84,13 @@ public class Player : MonoBehaviour
                 break;
         }
     }
+    public void Fire(CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Started:
+                _gun.Fire();
+                break;
+        }
+    }
 }

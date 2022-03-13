@@ -6,14 +6,10 @@ using UnityEngine.Events;
 [RequireComponent(typeof(CollectionBase))]
 public class TriggerChecker2D : MonoBehaviour
 {
-    public UnityEvent<IDamagable> HadDamagable;
+    public UnityEvent<GameObject> HadEnter;
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.TryGetComponent(out IDamagable damagable))
-        {
-            HadDamagable.Invoke(damagable);
-
-        }
+        HadEnter.Invoke(other.gameObject);
     }
 }

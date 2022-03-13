@@ -37,9 +37,12 @@ public class SimpleBullet : MonoBehaviour
         }
     }
 
-    public void Crash(IDamagable damagable)
+    public void Crash(GameObject obj)
     {
-        damagable.Hit();
-        Destroy(gameObject);
+        if (obj.gameObject.TryGetComponent(out IDamagable damagable))
+        {
+            damagable.Hit();
+            Destroy(gameObject);
+        }
     }
 }

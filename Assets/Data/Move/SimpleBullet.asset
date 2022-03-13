@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955a06621fe5cf548821d06dc72add4e, type: 3}
   m_Name: SimpleBullet
   m_EditorClassIdentifier: 
-  Speed: 3
+  Speed: 7
   Acceleration: 40
   SpeedRotation: 2
