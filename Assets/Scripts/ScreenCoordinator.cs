@@ -15,11 +15,11 @@ public class ScreenCoordinator
     {
         _camera = camera;
 
-        var zeroPoint = camera.ScreenToWorldPoint(Vector3.zero);
+        var zeroPoint = _camera.ScreenToWorldPoint(Vector3.zero);
         LeftX = zeroPoint.x;
         DownY = zeroPoint.y;
 
-        var highPoint = camera.ScreenToWorldPoint(new Vector3(camera.pixelWidth, camera.pixelHeight));
+        var highPoint = _camera.ScreenToWorldPoint(new Vector3(camera.pixelWidth, camera.pixelHeight));
         RightX = highPoint.x;
         UpY = highPoint.y;
     }
