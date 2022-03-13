@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Activity<T>
+public abstract class ActivityBase<T>
 {
     protected T _t;
-    public Activity(T t)
+    public ActivityBase(T t)
     {
         _t = t;
     }

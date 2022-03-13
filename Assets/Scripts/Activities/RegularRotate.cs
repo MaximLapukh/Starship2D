@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RegularRotate : Activity<Transform>
+public class RegularRotate : ActivityBase<Transform>
 {
     private Vector3 _direction;
     private float _angle;

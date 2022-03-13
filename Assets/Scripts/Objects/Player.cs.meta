@@ -3,7 +3,11 @@ guid: 20eec7eef0085844396b798a769d2191
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _shipData: {instanceID: 0}
+  - _firePoint: {instanceID: 0}
+  - _gunData: {instanceID: 0}
+  - _laserData: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

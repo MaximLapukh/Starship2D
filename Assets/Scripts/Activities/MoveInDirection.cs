@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveInDirection : Activity<Transform>
+public class MoveInDirection : ActivityBase<Transform>
 {
+    private Vector3 _direciton;
     private Vector3 _velocity;
     private Vector3 _desierdVelocity;
     private float _speed;
@@ -11,15 +12,22 @@ public class MoveInDirection : Activity<Transform>
     public MoveInDirection(Transform transform) : base(transform)
     {
         _velocity = Vector3.zero;
-        _speed = 0;
+        _speed = 1;
     }
     public void SetDirection(in Vector3 direction)
     {
-        _desierdVelocity = direction * _speed;
+        _direciton = direction.normalized;
+        UpdateDesiredVelocity();
     }
+    private void UpdateDesiredVelocity()
+    {
+        _desierdVelocity = _direciton * _speed;
+    }
+
     public void SetSpeed(in float speed)
     {
         _speed = speed;
+        UpdateDesiredVelocity();
     }
     public void SetAcceleration(in float acceleration)
     {

@@ -6,14 +6,28 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] ShipData _shipData;
-    private List<Activity<Transform>> _activities;
+    [Header("Base")]
+    [SerializeField] MoveData _moveData;
 
+    [Header("Weapons")]
+    [SerializeField] Transform _firePoint;
+    [Header("Gun")]
+    [SerializeField] WeaponData _gunData;
+    [SerializeField] int _startCountBulletGun;
+    [Header("Laser")]
+    [SerializeField] WeaponData _laserData;
+    [SerializeField] int _startCountBulletLaser;
+
+
+    private List<ActivityBase<Transform>> _activities;
     private MoveInDirection _moveinDirection;
     private RegularRotate _regularRotate;
+
+    private IWeapon _gun;
+    private IWeapon _laser;
     private void Awake()
     {
-        _activities = new List<Activity<Transform>>();
+        _activities = new List<ActivityBase<Transform>>();
 
         _moveinDirection = new MoveInDirection(transform);
         _activities.Add(_moveinDirection);
@@ -21,12 +35,23 @@ public class Player : MonoBehaviour
         _regularRotate = new RegularRotate(transform);
         _activities.Add(_regularRotate);
 
+        var gun = new Weapon(transform, _firePoint, _gunData);
+        _activities.Add(gun);
+        _gun = gun;
+
+        var laser = new Weapon(transform, _firePoint, _laserData);
+        _activities.Add(laser);
+        _laser = laser;
+
     }
     void Start()
     {
-        _moveinDirection.SetSpeed(_shipData.Speed);
-        _moveinDirection.SetAcceleration(_shipData.Acceleration);
-        _regularRotate.SetSpeed(_shipData.SpeedRotation);
+        _moveinDirection.SetSpeed(_moveData.Speed);
+        _moveinDirection.SetAcceleration(_moveData.Acceleration);
+        _regularRotate.SetSpeed(_moveData.SpeedRotation);
+
+        _gun.SetCountBullets(_startCountBulletGun);
+        _laser.SetCountBullets(_startCountBulletLaser);
 
         foreach (var item in _activities)
         {
