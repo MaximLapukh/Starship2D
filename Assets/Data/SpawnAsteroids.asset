@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 506724c6e9d1c1f4989e971d58f904da, type: 3}
-  m_Name: Gun
+  m_Script: {fileID: 11500000, guid: 0dd6a09dd09da884abb49e6c3f62e008, type: 3}
+  m_Name: SpawnAsteroids
   m_EditorClassIdentifier: 
-  PrefBullet: {fileID: 5620331144418691191, guid: 3647e91056ef16d40a5eb0d61b9130b7, type: 3}
-  ReloadTime: 0.3
+  Prefab: {fileID: 4919485052828187943, guid: 856090a26abea2d4aa7cdd04438811cf, type: 3}
+  Rate: 1

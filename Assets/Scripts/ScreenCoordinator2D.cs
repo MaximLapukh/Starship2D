@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScreenCoordinator
+public class ScreenCoordinator2D
 {
     public readonly float LeftX;
     public readonly float RightX;
@@ -11,7 +11,7 @@ public class ScreenCoordinator
 
     private Camera _camera;
 
-    public ScreenCoordinator(Camera camera)
+    public ScreenCoordinator2D(Camera camera)
     {
         _camera = camera;
 
@@ -45,5 +45,10 @@ public class ScreenCoordinator
         }
 
         transform.position = position;
+    }
+    //mb not should place here
+    public static Quaternion GetRandomRotation()
+    {
+       return Quaternion.Euler( new Vector3(0, 0, Random.Range(0, 359)));
     }
 }

@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
     [Header("Base")]
     [SerializeField] MoveData _moveData;
+    [SerializeField] Camera _camera;
 
     [Header("Weapons")]
     [SerializeField] Transform _firePoint;
@@ -29,7 +30,7 @@ public class Player : MonoBehaviour
     {
         _activities = new List<ActivityBase<Transform>>();
 
-        _moveinDirection = new MoveInDirScreen(transform, Camera.main);
+        _moveinDirection = new MoveInDirScreen(transform, _camera);
         _activities.Add(_moveinDirection);
 
         _regularRotate = new RegularRotate(transform);

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4919485052221981033}
   - component: {fileID: 4919485052221981038}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5479398e8a0dfc74dba2e36d0090c421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveData: {fileID: 11400000, guid: a6b49c137947fc74a8ff3aab269fffa6, type: 2}
+  _moveData: {fileID: 11400000, guid: da58fdf47e483ef4d84ec83d22b586cc, type: 2}
   _decayObjects:
   - {fileID: 6822826552191287543, guid: 19e44fff8d198dc4b8cc9510aba2314a, type: 3}
   - {fileID: 6822826552191287543, guid: 19e44fff8d198dc4b8cc9510aba2314a, type: 3}

@@ -26,9 +26,9 @@ public class Asteroid : MonoBehaviour, IDamagable
     }
     void Start()
     {
-        var randomDirection = Vector3.zero;
+        transform.rotation = ScreenCoordinator2D.GetRandomRotation();
 
-        _moveinDirection.SetDirection(randomDirection);
+        _moveinDirection.SetDirection(Vector3.up);
         _moveinDirection.SetSpeed(_moveData.Speed);
         _moveinDirection.SetAcceleration(_moveData.Acceleration);
 

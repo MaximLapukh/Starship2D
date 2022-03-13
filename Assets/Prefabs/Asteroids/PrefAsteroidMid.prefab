@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5479398e8a0dfc74dba2e36d0090c421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveData: {fileID: 11400000, guid: a6b49c137947fc74a8ff3aab269fffa6, type: 2}
+  _moveData: {fileID: 11400000, guid: 143c4f7f5de241847af668c6eb250f48, type: 2}
   _decayObjects:
   - {fileID: 750637077466725692, guid: 42111c99d89208349adbb3bc04cc244d, type: 3}
   - {fileID: 750637077466725692, guid: 42111c99d89208349adbb3bc04cc244d, type: 3}
