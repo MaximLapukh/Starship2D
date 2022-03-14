@@ -5,7 +5,7 @@ using UnityEngine;
 public interface IWeapon 
 {
     public void Fire();
-    //todo: get count bullet in future
+    public int GetCountBullets();
     public void SetCountBullets(int count);
     public float GetReloadTime();
 }

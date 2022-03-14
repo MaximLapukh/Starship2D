@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 506724c6e9d1c1f4989e971d58f904da, type: 3}
   m_Name: Laser
   m_EditorClassIdentifier: 
-  PrefBullet: {fileID: 0}
-  ReloadTime: 0
+  PrefBullet: {fileID: 8103088671387791221, guid: bcd15095b395c29469955a8b0a40ad0b, type: 3}
+  ReloadTime: 10

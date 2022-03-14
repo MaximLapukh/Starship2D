@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/Weapon")]
 public class WeaponData : ScriptableObject
 {
+    [Tooltip("Must inherit by IBullet")]
     public GameObject PrefBullet;
     public float ReloadTime;
 }

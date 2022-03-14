@@ -22,6 +22,7 @@ public class SimpleSpawner : MonoBehaviour
 
         var sides = new List<Side>();
         AddSides(ref sides);
+
         _spawner = new SpawnInScreenSides(transform, _spawnData, sides, _camera);
         _activities.Add(_spawner);
     }

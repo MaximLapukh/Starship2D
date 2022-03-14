@@ -1,37 +1,41 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimpleBullet : MonoBehaviour, IBullet
+public class Laser : MonoBehaviour, IBullet
 {
     [Header("Base")]
-    [SerializeField] MoveData _moveData;
+    [SerializeField] float _duration;
 
     private List<ActivityBase<Transform>> _activities;
-    private MoveInDirection _moveinDirection;
-    void Awake()
+    private CallbackOverTime _callback;
+    private void Awake()
     {
         _activities = new List<ActivityBase<Transform>>();
 
-        _moveinDirection = new MoveInDirection(transform);
-        _activities.Add(_moveinDirection);
-
+        _callback = new CallbackOverTime(transform);
+        _activities.Add(_callback);
     }
     public void Init(Transform firePoint)
     {
-
+        transform.SetParent(firePoint);
     }
+
     void Start()
     {
-        _moveinDirection.SetDirection(Vector3.up);
-        _moveinDirection.SetSpeed(_moveData.Speed);
-        _moveinDirection.SetAcceleration(_moveData.Acceleration);
-
+        _callback.InvokeCallback(_duration, Destroy);
         foreach (var item in _activities)
         {
             item.Start();
         }
     }
+
+    private void Destroy()
+    {
+        Destroy(gameObject);
+    }
+
     void Update()
     {
         foreach (var item in _activities)
@@ -39,14 +43,11 @@ public class SimpleBullet : MonoBehaviour, IBullet
             item.Update();
         }
     }
-
     public void Crash(GameObject obj)
     {
         if (obj.gameObject.TryGetComponent(out IDamagable damagable))
         {
             damagable.Hit();
-            Destroy(gameObject);
         }
     }
-
 }

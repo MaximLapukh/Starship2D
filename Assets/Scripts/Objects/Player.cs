@@ -36,11 +36,11 @@ public class Player : MonoBehaviour
         _regularRotate = new RegularRotate(transform);
         _activities.Add(_regularRotate);
 
-        var gun = new Weapon(transform, _firePoint, _gunData);
+        var gun = new Gun(transform, _firePoint, _gunData);
         _activities.Add(gun);
         _gun = gun;
 
-        var laser = new Weapon(transform, _firePoint, _laserData);
+        var laser = new Gun(transform, _firePoint, _laserData);
         _activities.Add(laser);
         _laser = laser;
 
@@ -91,6 +91,15 @@ public class Player : MonoBehaviour
         {
             case InputActionPhase.Started:
                 _gun.Fire();
+                break;
+        }
+    } 
+    public void Fire2(CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Started:
+                _laser.Fire();
                 break;
         }
     }
