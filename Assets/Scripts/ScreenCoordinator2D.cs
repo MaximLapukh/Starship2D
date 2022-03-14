@@ -8,6 +8,7 @@ public class ScreenCoordinator2D
     public readonly float RightX;
     public readonly float UpY;
     public readonly float DownY;
+    public readonly Vector2 Center;
 
     private Camera _camera;
 
@@ -22,6 +23,8 @@ public class ScreenCoordinator2D
         var highPoint = _camera.ScreenToWorldPoint(new Vector3(camera.pixelWidth, camera.pixelHeight));
         RightX = highPoint.x;
         UpY = highPoint.y;
+        
+        Center = _camera.ScreenToWorldPoint(new Vector3(camera.pixelWidth / 2, camera.pixelHeight / 2));
     }
     public void KeepInScreen(Transform transform)
     {
@@ -46,9 +49,22 @@ public class ScreenCoordinator2D
 
         transform.position = position;
     }
-    //mb not should place here
-    public static Quaternion GetRandomRotation()
+
+    public void LookToCenter(Transform transform, Vector3 correctAngels = new Vector3())
     {
-       return Quaternion.Euler( new Vector3(0, 0, Random.Range(0, 359)));
+        transform.LookAt(Center);
+        transform.rotation *= Quaternion.Euler(correctAngels);
+    }   
+    //mb not should place here
+    public static Quaternion GetRndAngels(float minAngle,float maxAngle, Vector3 axis)
+    {
+        axis.Normalize();
+        var angles = Vector3.zero;
+
+        angles.x = Random.Range(minAngle, maxAngle) * axis.x;
+        angles.y = Random.Range(minAngle, maxAngle) * axis.y;
+        angles.z = Random.Range(minAngle, maxAngle) * axis.z;
+
+        return Quaternion.Euler(angles);
     }
 }

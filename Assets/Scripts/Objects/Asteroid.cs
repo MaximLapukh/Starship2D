@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Asteroid : MonoBehaviour, IDamagable
+public class Asteroid : MonoBehaviour, IDamagable, IObjectScreen
 {
     [Header("Base")]
     [SerializeField] MoveData _moveData;
@@ -23,11 +23,17 @@ public class Asteroid : MonoBehaviour, IDamagable
 
         _decay = new Decay(transform, _decayObjects);
         _activities.Add(_decay);
+
+        //bad look
+        transform.rotation = ScreenCoordinator2D.GetRndAngels(0, 359, new Vector3(0, 0, 1));
+    }
+    public void Init(ScreenCoordinator2D screenCoordinator)
+    {
+        screenCoordinator.LookToCenter(transform, new Vector3(0, 90, 0));
+        transform.rotation *= ScreenCoordinator2D.GetRndAngels(0, 90, new Vector3(0, 0, 1));
     }
     void Start()
     {
-        transform.rotation = ScreenCoordinator2D.GetRandomRotation();
-
         _moveinDirection.SetDirection(Vector3.up);
         _moveinDirection.SetSpeed(_moveData.Speed);
         _moveinDirection.SetAcceleration(_moveData.Acceleration);
@@ -49,5 +55,6 @@ public class Asteroid : MonoBehaviour, IDamagable
         _decay.DecayOnObjects();
         Destroy(gameObject);        
     }
+
 
 }

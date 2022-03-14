@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d1e61c89bd6e2d478a204528b0c8cfa, type: 3}
-  m_Name: SpawnAsteroids
+  m_Script: {fileID: 11500000, guid: 955a06621fe5cf548821d06dc72add4e, type: 3}
+  m_Name: MoveAlien
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 4919485052828187943, guid: 856090a26abea2d4aa7cdd04438811cf, type: 3}
-  Rate: 1
+  Speed: 5
+  Acceleration: 200
+  SpeedRotation: 0

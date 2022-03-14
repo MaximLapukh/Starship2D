@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnInScreenSides : SpawnerBase
+public class SpawnInScreenSides<TObject> : SpawnerBase where TObject : MonoBehaviour, IObjectScreen
 {
 
     private List<Side> _sides;
@@ -14,12 +14,13 @@ public class SpawnInScreenSides : SpawnerBase
     }
     protected override void Spawn()
     {
-        Side side = _sides[Random.Range(0, _sides.Count - 1)];
+        Side side = _sides[Random.Range(0, _sides.Count)];
         Vector3 position = GetPositionFromSide(side, _screenCoordinator);
 
-        GameObject.Instantiate(_spawnData.Prefab, position, Quaternion.Euler(Vector3.zero));
+        GameObject prefab = GameObject.Instantiate(_spawnData.Prefab, position, Quaternion.Euler(Vector3.zero));
+        prefab.GetComponent<IObjectScreen>().Init(_screenCoordinator);
     }
-
+   
     private Vector3 GetPositionFromSide(Side side, ScreenCoordinator2D screenCoordinator)
     {
         var position = Vector3.zero;

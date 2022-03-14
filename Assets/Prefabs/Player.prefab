@@ -290,6 +290,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: e2435ff3-6951-48ab-bb7f-5d9be1e807ab
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7157016170558836233}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Fire2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 801a6e8e-4974-4a0a-976d-f57d023f6eb0
+    m_ActionName: Player/Fire2[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player

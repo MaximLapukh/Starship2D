@@ -6,10 +6,10 @@ using UnityEngine.Events;
 
 public class CallbackOverTime : ActivityBase<Transform>
 {
-    private float _duration;
-    private float _timer;
+    protected float _duration;
+    protected float _timer;
 
-    private Action _callback;
+    protected Action _callback;
     public CallbackOverTime(Transform t) : base(t)
     {
 
@@ -28,11 +28,12 @@ public class CallbackOverTime : ActivityBase<Transform>
     }
     public override void Update()
     {
-        if(_timer < 0)
+        if (_timer > 0) _timer -= Time.deltaTime;
+
+        if (_timer < 0)
         {
             _callback.Invoke();
             _timer = 0;
         }
-        if (_timer > 0) _timer -= Time.deltaTime;
     }
 }

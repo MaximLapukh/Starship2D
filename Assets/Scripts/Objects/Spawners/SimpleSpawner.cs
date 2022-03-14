@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimpleSpawner : MonoBehaviour
+public abstract class SimpleSpawner<TObject> : MonoBehaviour where TObject : MonoBehaviour, IObjectScreen
 {
     [Header("Base")]
     [SerializeField] SpawnData _spawnData;
     [SerializeField] Camera _camera;
 
-    [Header("Sides")]
+    [Header("Screen sides")]
     [SerializeField] bool _leftSide;
     [SerializeField] bool _rightSide;
     [SerializeField] bool _upSide;
@@ -23,7 +23,7 @@ public class SimpleSpawner : MonoBehaviour
         var sides = new List<Side>();
         AddSides(ref sides);
 
-        _spawner = new SpawnInScreenSides(transform, _spawnData, sides, _camera);
+        _spawner = new SpawnInScreenSides<TObject>(transform, _spawnData, sides, _camera);
         _activities.Add(_spawner);
     }
     
