@@ -1,13 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SimpleBullet : ObjectBehaviour, IBullet
 {
+    public event Action<GameObject> HadHit = delegate { };
+
     [Header("Base")]
     [SerializeField] MoveData _moveData;
 
     private MoveInDirection _moveinDirection;
+
     protected override void InitActivities()
     {
         _moveinDirection = new MoveInDirection(transform);
@@ -30,8 +34,14 @@ public class SimpleBullet : ObjectBehaviour, IBullet
         if (obj.gameObject.TryGetComponent(out IDamagable damagable))
         {
             damagable.Hit();
-            Destroy(gameObject);
+            HadHit.Invoke(obj);
+            Destroy();
         }
+    }
+    public void Destroy()
+    {
+        //other logic about Destroy
+        Destroy(gameObject);
     }
 
 }

@@ -325,8 +325,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveData: {fileID: 11400000, guid: 7a0d4efd43c600d4ca79af8a5a0d75c6, type: 2}
   _camera: {fileID: 0}
+  _maxHealth: 3
   _firePoint: {fileID: 7157016170357495434}
   _gunData: {fileID: 11400000, guid: e990db21b98ae9742b5d0252cbf3570f, type: 2}
   _startCountBulletGun: 99999
   _laserData: {fileID: 11400000, guid: 6c9227f74f76fce44a83d936e4ce3a58, type: 2}
   _startCountBulletLaser: 3
+  HadDead:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7157016170558836246}
+        m_TargetAssemblyTypeName: UnityEngine.InputSystem.PlayerInput, Unity.InputSystem
+        m_MethodName: DeactivateInput
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

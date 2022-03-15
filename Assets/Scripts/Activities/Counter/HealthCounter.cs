@@ -22,7 +22,11 @@ public class HealthCounter : ActivityBase<Transform>
     {
         _health -= num;
 
-        if (_health <= 0) HadZeroHealth.Invoke();
+        if (_health <= 0)
+        {
+            _health = 0;
+            HadZeroHealth.Invoke();
+        }
     }
     public override void Update()
     {

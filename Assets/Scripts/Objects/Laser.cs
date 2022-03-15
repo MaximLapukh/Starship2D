@@ -5,10 +5,13 @@ using UnityEngine;
 
 public class Laser : ObjectBehaviour, IBullet
 {
+    public event Action<GameObject> HadHit = delegate { };
+
     [Header("Base")]
     [SerializeField] float _duration;
 
     private CallbackOverTime _callback;
+
     protected override void InitActivities()
     {
         _callback = new CallbackOverTime(transform);
@@ -33,6 +36,7 @@ public class Laser : ObjectBehaviour, IBullet
         if (obj.gameObject.TryGetComponent(out IDamagable damagable))
         {
             damagable.Hit();
+            HadHit.Invoke(obj);
         }
     }
 }

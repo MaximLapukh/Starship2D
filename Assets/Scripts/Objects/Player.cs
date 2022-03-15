@@ -10,8 +10,12 @@ public class Player : ObjectBehaviour, IDamagable
 {
     [Header("Base")]
     [SerializeField] MoveData _moveData;
-    [SerializeField] Camera _camera;
     [SerializeField] int _maxHealth;
+
+    [Header("Links")]
+    [SerializeField] Camera _camera;
+    [SerializeField] UIManager _uiManager;
+
 
     [Header("Weapons")]
     [SerializeField] Transform _firePoint;
@@ -28,13 +32,13 @@ public class Player : ObjectBehaviour, IDamagable
     private MoveInDirection _moveinDirection;
     private RegularRotate _regularRotate;
     private HealthCounter _healthCounter;
+    private ScoreCounter _scoreCounter;
 
-    private IWeapon _gun;
-    private IWeapon _laser;
+    private IWeapon<IBullet> _gun;
+    private IWeapon<IBullet> _laser;
 
     protected override void InitActivities()
     {
-
         _moveinDirection = new MoveInDirScreen(transform, _camera);
         _activities.Add(_moveinDirection);
 
@@ -44,6 +48,9 @@ public class Player : ObjectBehaviour, IDamagable
         _healthCounter = new HealthCounter(transform, _maxHealth);
         _activities.Add(_healthCounter);
         _healthCounter.HadZeroHealth += Dead;
+
+        _scoreCounter = new ScoreCounter(transform);
+        _activities.Add(_scoreCounter);
 
         var gun = new Gun(transform, _firePoint, _gunData);
         _activities.Add(gun);
@@ -56,6 +63,8 @@ public class Player : ObjectBehaviour, IDamagable
     protected override void Start()
     {
         HadDead.AddListener(StopAllActivities);
+        _gun.HadHit += AddScore;
+        _laser.HadHit += AddScore;
 
         _moveinDirection.SetSpeed(_moveData.Speed);
         _moveinDirection.SetAcceleration(_moveData.Acceleration);
@@ -66,6 +75,18 @@ public class Player : ObjectBehaviour, IDamagable
 
         base.Start();
     }
+    protected override void Update()
+    {
+        UpdateInfo();
+        base.Update();
+    }
+
+    private void AddScore(GameObject hitObj)
+    {
+        //idea: add different score depends at hitObj in pattern like factory
+        _scoreCounter.AddScore(1);
+    }
+
     public void Hit()
     {
         _healthCounter.LessHealth(1);
@@ -110,5 +131,17 @@ public class Player : ObjectBehaviour, IDamagable
                 _laser.Fire();
                 break;
         }
+    }
+    private void UpdateInfo()
+    {
+        var infoProperty = new InfoProperty();
+        infoProperty.Health = _healthCounter.GetHealth();
+        infoProperty.Score = _scoreCounter.GetScore();
+        infoProperty.Position = transform.position;
+        infoProperty.ZAngle = transform.localEulerAngles.z;
+        infoProperty.Speed = 0;
+        infoProperty.CountLazers = _laser.GetCountBullets();
+        infoProperty.ReloadLaser = _laser.GetReloadTime();
+        _uiManager.ShowInfo(infoProperty);
     }
 }

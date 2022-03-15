@@ -17,7 +17,7 @@ public class Alien : ObjectBehaviour, IObjectScreen, IDamagable
 
     private MoveInDirection _moveinDirection;
     private CallbackOverTime _callback;
-    private IWeapon _gun;
+    private IWeapon<IBullet> _gun;
 
     protected override void InitActivities()
     {
@@ -63,14 +63,19 @@ public class Alien : ObjectBehaviour, IObjectScreen, IDamagable
     }
     public void Hit()
     {
-        Destroy(gameObject);
+        Destroy();
     }
     public void Crash(GameObject obj)
     {
         if (obj.gameObject.TryGetComponent(out IDamagable damagable))
         {
             damagable.Hit();
-            Destroy(gameObject);
+            Destroy();
         }
+    }
+    public void Destroy()
+    {
+        //other logic about Destroy
+        Destroy(gameObject);
     }
 }

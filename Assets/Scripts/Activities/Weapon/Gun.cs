@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : ActivityBase<Transform>, IWeapon
+public class Gun : ActivityBase<Transform>, IWeapon<IBullet>
 {
+    public event Action<GameObject> HadHit = delegate { };
+
     private Transform _firePoint;
     private WeaponData _weaponData;
 
@@ -32,8 +35,10 @@ public class Gun : ActivityBase<Transform>, IWeapon
     {
         if (_reloadTime <= 0 && _countBullets > 0)
         {
-            GameObject bullet = GameObject.Instantiate(_weaponData.PrefBullet, _firePoint.position, _firePoint.rotation);
-            bullet.GetComponent<IBullet>().Init(_firePoint);
+            GameObject bulletObj = GameObject.Instantiate(_weaponData.PrefBullet, _firePoint.position, _firePoint.rotation);
+            IBullet bullet = bulletObj.GetComponent<IBullet>();
+            bullet.Init(_firePoint);
+            bullet.HadHit += HadHit.Invoke;
 
             _countBullets--;
             _reloadTime = _weaponData.ReloadTime;

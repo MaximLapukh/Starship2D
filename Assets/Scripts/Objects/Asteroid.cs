@@ -45,15 +45,19 @@ public class Asteroid : ObjectBehaviour, IDamagable, IObjectScreen
     public void Hit()
     {
         _decay.DecayOnObjects();
-        Destroy(gameObject);        
+        Destroy();        
     }
     public void Crash(GameObject obj)
     {
         if (obj.gameObject.TryGetComponent(out IDamagable damagable))
         {
             damagable.Hit();
-            Destroy(gameObject);
+            Destroy();
         }
     }
-
+    public void Destroy()
+    {
+        //other logic about Destroy
+        Destroy(gameObject);
+    }
 }
