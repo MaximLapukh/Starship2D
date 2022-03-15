@@ -11,4 +11,5 @@ public abstract class ActivityBase<T>
     }
     public void Start() { }
     public abstract void Update();
+    public void Stop() { }
 }

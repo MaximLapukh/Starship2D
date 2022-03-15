@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 5131588982125483145}
   - component: {fileID: 5487694934652484415}
   m_Layer: 6
-  m_Name: PrefLaser
+  m_Name: PrefLaserPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,7 +133,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 9.736275}
+  m_Offset: {x: 0, y: 11.550104}
   m_SpriteTilingProperty:
     border: {x: 0.099999994, y: 0.099999994, z: 0.099999994, w: 0.099999994}
     pivot: {x: 0.5, y: 0.5}
@@ -144,7 +144,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.44093418, y: 19.650295}
+  m_Size: {x: 0.44093418, y: 27.369171}
   m_EdgeRadius: 0
 --- !u!50 &4946220385050593178
 Rigidbody2D:

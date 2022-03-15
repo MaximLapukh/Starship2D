@@ -1,14 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
-public class Player : MonoBehaviour
+public class Player : ObjectBehaviour, IDamagable
 {
     [Header("Base")]
     [SerializeField] MoveData _moveData;
     [SerializeField] Camera _camera;
+    [SerializeField] int _maxHealth;
 
     [Header("Weapons")]
     [SerializeField] Transform _firePoint;
@@ -19,22 +22,28 @@ public class Player : MonoBehaviour
     [SerializeField] WeaponData _laserData;
     [SerializeField] int _startCountBulletLaser;
 
+    [Header("Event")]
+    public UnityEvent HadDead;
 
-    private List<ActivityBase<Transform>> _activities;
     private MoveInDirection _moveinDirection;
     private RegularRotate _regularRotate;
+    private HealthCounter _healthCounter;
 
     private IWeapon _gun;
     private IWeapon _laser;
-    private void Awake()
+
+    protected override void InitActivities()
     {
-        _activities = new List<ActivityBase<Transform>>();
 
         _moveinDirection = new MoveInDirScreen(transform, _camera);
         _activities.Add(_moveinDirection);
 
         _regularRotate = new RegularRotate(transform);
         _activities.Add(_regularRotate);
+
+        _healthCounter = new HealthCounter(transform, _maxHealth);
+        _activities.Add(_healthCounter);
+        _healthCounter.HadZeroHealth += Dead;
 
         var gun = new Gun(transform, _firePoint, _gunData);
         _activities.Add(gun);
@@ -43,10 +52,11 @@ public class Player : MonoBehaviour
         var laser = new Gun(transform, _firePoint, _laserData);
         _activities.Add(laser);
         _laser = laser;
-
     }
-    void Start()
+    protected override void Start()
     {
+        HadDead.AddListener(StopAllActivities);
+
         _moveinDirection.SetSpeed(_moveData.Speed);
         _moveinDirection.SetAcceleration(_moveData.Acceleration);
         _regularRotate.SetSpeed(_moveData.SpeedRotation);
@@ -54,19 +64,17 @@ public class Player : MonoBehaviour
         _gun.SetCountBullets(_startCountBulletGun);
         _laser.SetCountBullets(_startCountBulletLaser);
 
-        foreach (var item in _activities)
-        {
-            item.Start();
-        }
+        base.Start();
+    }
+    public void Hit()
+    {
+        _healthCounter.LessHealth(1);
+    }
+    private void Dead()
+    {
+        HadDead.Invoke();
     }
 
-    void Update()
-    {
-        foreach (var item in _activities)
-        {
-            item.Update();
-        }
-    }
     public void ChangeDirection(CallbackContext context)
     {
         var temp = context.ReadValue<Vector2>();

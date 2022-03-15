@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Alien : MonoBehaviour, IObjectScreen, IDamagable
+public class Alien : ObjectBehaviour, IObjectScreen, IDamagable
 {
     [Header("Base")]
     [SerializeField] MoveData _moveData;
@@ -15,15 +15,12 @@ public class Alien : MonoBehaviour, IObjectScreen, IDamagable
     [SerializeField] WeaponData _gunData;
     [SerializeField] int _startCountBulletGun;
 
-    private List<ActivityBase<Transform>> _activities;
     private MoveInDirection _moveinDirection;
     private CallbackOverTime _callback;
     private IWeapon _gun;
 
-    public void Awake()
+    protected override void InitActivities()
     {
-        _activities = new List<ActivityBase<Transform>>();
-
         _moveinDirection = new MoveInDirection(transform);
         _activities.Add(_moveinDirection);
 
@@ -33,12 +30,6 @@ public class Alien : MonoBehaviour, IObjectScreen, IDamagable
         var gun = new Gun(transform, _firePoint, _gunData);
         _activities.Add(gun);
         _gun = gun;
-    }
-
-    private void Fire()
-    {
-        _firePoint.localRotation = ScreenCoordinator2D.GetRndAngels(0, 359, new Vector3(0, 0, 1));
-        _gun.Fire();
     }
 
     public void Init(ScreenCoordinator2D screenCoordinator)
@@ -55,29 +46,31 @@ public class Alien : MonoBehaviour, IObjectScreen, IDamagable
         }
     }
 
-    void Start()
+    protected override void Start()
     {
         _moveinDirection.SetSpeed(_moveData.Speed);
         _moveinDirection.SetAcceleration(_moveData.Acceleration);
 
         _gun.SetCountBullets(_startCountBulletGun);
 
-        foreach (var item in _activities)
-        {
-            item.Start();
-        }
+        base.Start();
     }
 
-    void Update()
+    private void Fire()
     {
-        foreach (var item in _activities)
-        {
-            item.Update();
-        }
+        _firePoint.localRotation = ScreenCoordinator2D.GetRndAngels(0, 359, new Vector3(0, 0, 1));
+        _gun.Fire();
     }
     public void Hit()
     {
         Destroy(gameObject);
     }
-
+    public void Crash(GameObject obj)
+    {
+        if (obj.gameObject.TryGetComponent(out IDamagable damagable))
+        {
+            damagable.Hit();
+            Destroy(gameObject);
+        }
+    }
 }

@@ -3,17 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Laser : MonoBehaviour, IBullet
+public class Laser : ObjectBehaviour, IBullet
 {
     [Header("Base")]
     [SerializeField] float _duration;
 
-    private List<ActivityBase<Transform>> _activities;
     private CallbackOverTime _callback;
-    private void Awake()
+    protected override void InitActivities()
     {
-        _activities = new List<ActivityBase<Transform>>();
-
         _callback = new CallbackOverTime(transform);
         _activities.Add(_callback);
     }
@@ -22,26 +19,14 @@ public class Laser : MonoBehaviour, IBullet
         transform.SetParent(firePoint);
     }
 
-    void Start()
+    protected override void Start()
     {
         _callback.InvokeCallback(_duration, Destroy);
-        foreach (var item in _activities)
-        {
-            item.Start();
-        }
+        base.Start();
     }
-
     private void Destroy()
     {
         Destroy(gameObject);
-    }
-
-    void Update()
-    {
-        foreach (var item in _activities)
-        {
-            item.Update();
-        }
     }
     public void Crash(GameObject obj)
     {
