@@ -51,7 +51,7 @@ public class Alien : ObjectBehaviour, IObjectScreen, IDamagable
         _moveinDirection.SetSpeed(_moveData.Speed);
         _moveinDirection.SetAcceleration(_moveData.Acceleration);
 
-        _gun.SetCountBullets(_startCountBulletGun);
+        _gun.SetMaxCountBullets(_startCountBulletGun);
 
         base.Start();
     }

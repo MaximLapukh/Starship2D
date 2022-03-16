@@ -10,4 +10,5 @@ public class InfoProperty : ScoreProperty
     public float Speed;
     public float CountLazers;
     public float ReloadLaser;
+    public float RollbackLaser;
 }

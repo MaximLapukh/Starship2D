@@ -7,11 +7,12 @@ public class Gun : ActivityBase<Transform>, IWeapon<IBullet>
 {
     public event Action<GameObject> HadHit = delegate { };
 
-    private Transform _firePoint;
-    private WeaponData _weaponData;
+    protected Transform _firePoint;
+    protected WeaponData _weaponData;
 
-    private int _countBullets;
-    private float _reloadTime;
+    protected int _countBullets;
+    protected int _maxCountBullets;
+    protected float _reloadTime;
     public Gun(Transform t, in Transform firePoint, in WeaponData weaponData) : base(t)
     {
         _firePoint = firePoint;
@@ -21,9 +22,10 @@ public class Gun : ActivityBase<Transform>, IWeapon<IBullet>
     {
         return _countBullets;
     }
-    public void SetCountBullets(int count)
+    public void SetMaxCountBullets(int count)
     {
         _countBullets = count;
+        _maxCountBullets = count;
     }
    
     public float GetReloadTime()

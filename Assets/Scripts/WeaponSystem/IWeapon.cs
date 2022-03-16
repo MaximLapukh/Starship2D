@@ -8,6 +8,6 @@ public interface IWeapon<TBullet>
     public event Action<GameObject> HadHit;
     public void Fire();
     public int GetCountBullets();
-    public void SetCountBullets(int count);
+    public void SetMaxCountBullets(int count);
     public float GetReloadTime();
 }

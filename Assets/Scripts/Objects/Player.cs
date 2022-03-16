@@ -23,7 +23,7 @@ public class Player : ObjectBehaviour, IDamagable
     [SerializeField] WeaponData _gunData;
     [SerializeField] int _startCountBulletGun;
     [Header("Laser")]
-    [SerializeField] WeaponData _laserData;
+    [SerializeField] LazerData _laserData;
     [SerializeField] int _startCountBulletLaser;
 
     [Header("Event")]
@@ -56,7 +56,7 @@ public class Player : ObjectBehaviour, IDamagable
         _activities.Add(gun);
         _gun = gun;
 
-        var laser = new Gun(transform, _firePoint, _laserData);
+        var laser = new Lazer(transform, _firePoint, _laserData);
         _activities.Add(laser);
         _laser = laser;
     }
@@ -69,8 +69,8 @@ public class Player : ObjectBehaviour, IDamagable
         _moveinDirection.SetAcceleration(_moveData.Acceleration);
         _regularRotate.SetSpeed(_moveData.SpeedRotation);
 
-        _gun.SetCountBullets(_startCountBulletGun);
-        _laser.SetCountBullets(_startCountBulletLaser);
+        _gun.SetMaxCountBullets(_startCountBulletGun);
+        _laser.SetMaxCountBullets(_startCountBulletLaser);
 
         base.Start();
     }
@@ -141,6 +141,7 @@ public class Player : ObjectBehaviour, IDamagable
         infoProperty.Speed = _moveinDirection.GetSpeed();
         infoProperty.CountLazers = _laser.GetCountBullets();
         infoProperty.ReloadLaser = _laser.GetReloadTime();
+        infoProperty.RollbackLaser = ((Lazer)_laser).GetRollbackBullet();
         return infoProperty;
     }
     private void UpdateInfo()

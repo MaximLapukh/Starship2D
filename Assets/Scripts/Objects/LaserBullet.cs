@@ -3,12 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Laser : ObjectBehaviour, IBullet
+public class LaserBullet : ObjectBehaviour, IBullet
 {
     public event Action<GameObject> HadHit = delegate { };
-
-    [Header("Base")]
-    [SerializeField] float _duration;
 
     private CallbackOverTime _callback;
 
@@ -24,7 +21,7 @@ public class Laser : ObjectBehaviour, IBullet
 
     protected override void Start()
     {
-        _callback.InvokeCallback(_duration, Destroy);
+        _callback.InvokeCallback(0.1f, Destroy);
         base.Start();
     }
     private void Destroy()

@@ -1,0 +1,17 @@
+{
+    "name": "Activities",
+    "rootNamespace": "",
+    "references": [
+        "GUID:bc866e63f2f5a004cb9069f61952387d",
+        "GUID:09f82f2f3cb51264cb18c9b1373ebfd9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

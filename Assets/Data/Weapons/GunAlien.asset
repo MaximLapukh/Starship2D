@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 506724c6e9d1c1f4989e971d58f904da, type: 3}
+  m_Script: {fileID: 11500000, guid: 858a189fe4e11b04cb2a92fcec94eab1, type: 3}
   m_Name: GunAlien
   m_EditorClassIdentifier: 
   PrefBullet: {fileID: 4338045724019608190, guid: e267d169f919db7418196ec61dc81006, type: 3}
