@@ -4,12 +4,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIScoreScreen : UIScreenController
+public class UIOverScreen : UIScreenController
 {
     [SerializeField] TextMeshProUGUI _textScore;
-    private void Awake()
+    public override string GetId()
     {
-        _id = "Score";
+        return "Over";
     }
     public override void Show(IPropertyScreen property)
     {
@@ -18,4 +18,5 @@ public class UIScoreScreen : UIScreenController
 
         base.Show();
     }
+ 
 }

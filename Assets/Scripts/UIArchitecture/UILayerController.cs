@@ -8,4 +8,11 @@ public abstract class UILayerController<TScreen> : MonoBehaviour where TScreen :
     public abstract void ShowScreen(TScreen screen);
     public abstract void ShowScreen<P>(TScreen screen, P properties) where P : IPropertyScreen;
     public abstract void HideScreen(TScreen screen);
+    public virtual void HideAllScreens()
+    {
+        foreach (var screen in _screenControllers.Values)
+        {
+            screen.Hide();
+        }
+    }
 }

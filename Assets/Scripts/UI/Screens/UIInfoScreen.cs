@@ -11,10 +11,10 @@ public class UIInfoScreen : UIScreenController
     [SerializeField] TextMeshProUGUI _textZAngle;
     [SerializeField] TextMeshProUGUI _textSpeed;
     [SerializeField] TextMeshProUGUI _textCountLazer;
-    [SerializeField] TextMeshProUGUI _textReloadLazer;
-    private void Awake()
+    [SerializeField] TextMeshProUGUI _textReloadLazer; 
+    public override string GetId()
     {
-        _id = "Info";
+        return "Info";
     }
     public override void Show(IPropertyScreen property)
     {
@@ -29,5 +29,5 @@ public class UIInfoScreen : UIScreenController
 
         base.Show();
     }
-
+  
 }

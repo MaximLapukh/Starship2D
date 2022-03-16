@@ -6,17 +6,13 @@ public abstract class UIScreenController : MonoBehaviour, IScreenController<IPro
 {
     [SerializeField]
     protected GameObject _window;
-    protected string _id;
     protected bool _active;
     public bool GetActive()
     {
         return _active;
     }
 
-    public string GetId()
-    {
-        return _id;
-    }
+    public abstract string GetId();
     public virtual void Show()
     {
         _active = true;

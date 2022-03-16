@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIPanelLayer : UILayerController<UIScreenController>
+public class UIWindowsLayer : UILayerController<UIScreenController>
 {
     [Header("Screens")]
-    [SerializeField] UIScreenController _infoScreen;
-    private void Start()
+    [SerializeField] UIScreenController _startScreen;
+    [SerializeField] UIScreenController _overScreen;
+
+    private void Awake()
     {
-        _screenControllers.Add(_infoScreen.GetId(), _infoScreen);
+        _screenControllers.Add(_startScreen.GetId(), _startScreen);
+        _screenControllers.Add(_overScreen.GetId(), _overScreen);
     }
+
+    //use windows hierarchy in future
     public override void HideScreen(UIScreenController screen)
     {
         _screenControllers[screen.GetId()].Hide();

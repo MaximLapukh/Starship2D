@@ -27,7 +27,7 @@ public class Player : ObjectBehaviour, IDamagable
     [SerializeField] int _startCountBulletLaser;
 
     [Header("Event")]
-    public UnityEvent HadDead;
+    public UnityEvent<InfoProperty> HadDead;
 
     private MoveInDirection _moveinDirection;
     private RegularRotate _regularRotate;
@@ -62,7 +62,6 @@ public class Player : ObjectBehaviour, IDamagable
     }
     protected override void Start()
     {
-        HadDead.AddListener(StopAllActivities);
         _gun.HadHit += AddScore;
         _laser.HadHit += AddScore;
 
@@ -93,7 +92,7 @@ public class Player : ObjectBehaviour, IDamagable
     }
     private void Dead()
     {
-        HadDead.Invoke();
+        HadDead.Invoke(CollectProperties());
     }
 
     public void ChangeDirection(CallbackContext context)
@@ -132,16 +131,20 @@ public class Player : ObjectBehaviour, IDamagable
                 break;
         }
     }
-    private void UpdateInfo()
+    private InfoProperty CollectProperties()
     {
         var infoProperty = new InfoProperty();
         infoProperty.Health = _healthCounter.GetHealth();
         infoProperty.Score = _scoreCounter.GetScore();
         infoProperty.Position = transform.position;
         infoProperty.ZAngle = transform.localEulerAngles.z;
-        infoProperty.Speed = 0;
+        infoProperty.Speed = _moveinDirection.GetSpeed();
         infoProperty.CountLazers = _laser.GetCountBullets();
         infoProperty.ReloadLaser = _laser.GetReloadTime();
-        _uiManager.ShowInfo(infoProperty);
+        return infoProperty;
+    }
+    private void UpdateInfo()
+    {
+        _uiManager.ShowInfo(CollectProperties());
     }
 }

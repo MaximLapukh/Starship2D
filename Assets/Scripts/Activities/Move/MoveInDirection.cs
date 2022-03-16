@@ -23,7 +23,10 @@ public class MoveInDirection : ActivityBase<Transform>
     {
         _desierdVelocity = _direciton * _speed;
     }
-
+    public float GetSpeed()
+    {
+        return _desierdVelocity.magnitude;
+    }
     public void SetSpeed(in float speed)
     {
         _speed = speed;

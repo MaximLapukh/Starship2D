@@ -40,12 +40,12 @@ public abstract class ObjectBehaviour : MonoBehaviour
             item.Stop();
         }
     }
-    protected void StartAllActivities()
+    public void StartAllActivities()
     {
         Start();
         _isStopActivities = false;
     }
-    protected void StopAllActivities()
+    public void StopAllActivities()
     {
         Stop();
         _isStopActivities = true;
