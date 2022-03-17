@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Lazer
   m_EditorClassIdentifier: 
   PrefBullet: {fileID: 8103088671387791221, guid: bcd15095b395c29469955a8b0a40ad0b, type: 3}
+  MaxTotalBullets: 3
   ReloadTime: 6
   Rollback: 6

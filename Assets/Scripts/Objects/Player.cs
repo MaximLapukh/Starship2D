@@ -8,6 +8,7 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class Player : ObjectBehaviour, IDamagable
 {
+    
     [Header("Base")]
     [SerializeField] MoveData _moveData;
     [SerializeField] int _maxHealth;
@@ -19,12 +20,8 @@ public class Player : ObjectBehaviour, IDamagable
 
     [Header("Weapons")]
     [SerializeField] Transform _firePoint;
-    [Header("Gun")]
     [SerializeField] WeaponData _gunData;
-    [SerializeField] int _startCountBulletGun;
-    [Header("Laser")]
     [SerializeField] LazerData _laserData;
-    [SerializeField] int _startCountBulletLaser;
 
     [Header("Event")]
     public UnityEvent<InfoProperty> HadDead;
@@ -62,15 +59,12 @@ public class Player : ObjectBehaviour, IDamagable
     }
     protected override void Start()
     {
-        _gun.HadHit += AddScore;
-        _laser.HadHit += AddScore;
+        _gun.HadBulletHit += AddScore;
+        _laser.HadBulletHit += AddScore;
 
         _moveinDirection.SetSpeed(_moveData.Speed);
         _moveinDirection.SetAcceleration(_moveData.Acceleration);
         _regularRotate.SetSpeed(_moveData.SpeedRotation);
-
-        _gun.SetMaxCountBullets(_startCountBulletGun);
-        _laser.SetMaxCountBullets(_startCountBulletLaser);
 
         base.Start();
     }
@@ -141,7 +135,7 @@ public class Player : ObjectBehaviour, IDamagable
         infoProperty.Speed = _moveinDirection.GetSpeed();
         infoProperty.CountLazers = _laser.GetCountBullets();
         infoProperty.ReloadLaser = _laser.GetReloadTime();
-        infoProperty.RollbackLaser = ((Lazer)_laser).GetRollbackBullet();
+        infoProperty.RollbackLaser = ((Lazer)_laser).GetRollback();
         return infoProperty;
     }
     private void UpdateInfo()

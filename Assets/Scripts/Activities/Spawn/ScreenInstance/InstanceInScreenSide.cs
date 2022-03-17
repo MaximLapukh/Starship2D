@@ -2,25 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnInScreenSides<TObject> : SpawnerBase where TObject : MonoBehaviour, IObjectScreen
+internal class InstanceInScreenSide<TOBject> where TOBject : MonoBehaviour, IObjectScreen
 {
-
-    private List<Side> _sides;
     private ScreenCoordinator2D _screenCoordinator;
-    public SpawnInScreenSides(Transform t, SpawnData spawnData, List<Side> sides, Camera camera) : base(t, spawnData)
+    internal InstanceInScreenSide(Camera camera)
     {
-        _sides = sides;
         _screenCoordinator = new ScreenCoordinator2D(camera);
     }
-    protected override void Spawn()
+    internal TOBject Create(TOBject obj, Side side)
     {
-        Side side = _sides[Random.Range(0, _sides.Count)];
         Vector3 position = GetPositionFromSide(side, _screenCoordinator);
 
-        GameObject prefab = GameObject.Instantiate(_spawnData.Prefab, position, Quaternion.Euler(Vector3.zero));
-        prefab.GetComponent<IObjectScreen>().Init(_screenCoordinator);
+        var screenObj = GameObject.Instantiate(obj.gameObject, position, Quaternion.Euler(Vector3.zero))
+            .GetComponent<TOBject>();
+        screenObj.Init(_screenCoordinator);
+
+        return screenObj;
     }
-   
     private Vector3 GetPositionFromSide(Side side, ScreenCoordinator2D screenCoordinator)
     {
         var position = Vector3.zero;
@@ -49,8 +47,6 @@ public class SpawnInScreenSides<TObject> : SpawnerBase where TObject : MonoBehav
         }
         return position;
     }
-
- 
 }
 public enum Side
 {
@@ -59,3 +55,4 @@ public enum Side
     up,
     down
 }
+

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Gun
   m_EditorClassIdentifier: 
   PrefBullet: {fileID: 5620331144418691191, guid: 3647e91056ef16d40a5eb0d61b9130b7, type: 3}
+  MaxTotalBullets: 99999
   ReloadTime: 0.3

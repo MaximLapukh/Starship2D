@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class UIInfoScreen : UIScreenController
 {
+    [Header("Links")]
     [SerializeField] TextMeshProUGUI _textHealth;
     [SerializeField] TextMeshProUGUI _textScore;
     [SerializeField] TextMeshProUGUI _textPosition;
@@ -24,10 +25,10 @@ public class UIInfoScreen : UIScreenController
         _textScore.text = infoProperty.Score.ToString();
         _textPosition.text = infoProperty.Position.ToString();
         _textZAngle.text = ((int)infoProperty.ZAngle).ToString();
-        _textSpeed.text = infoProperty.Speed.ToString();
+        _textSpeed.text = Mathf.Ceil(infoProperty.Speed).ToString();
         _textCountLazer.text = infoProperty.CountLazers.ToString();
-        _textReloadLazer.text = (Mathf.Ceil(infoProperty.ReloadLaser)).ToString();
-        _textRollbackLazer.text = (Mathf.Ceil(infoProperty.RollbackLaser)).ToString();
+        _textReloadLazer.text = Mathf.Ceil(infoProperty.ReloadLaser).ToString();
+        _textRollbackLazer.text = Mathf.Ceil(infoProperty.RollbackLaser).ToString();
 
         base.Show();
     }

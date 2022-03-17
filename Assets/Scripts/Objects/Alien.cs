@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Alien : ObjectBehaviour, IObjectScreen, IDamagable
+public class Alien : ObjectBehaviour, IObjectScreen, IFollowable, IDamagable
 {
     [Header("Base")]
     [SerializeField] MoveData _moveData;
@@ -11,18 +11,16 @@ public class Alien : ObjectBehaviour, IObjectScreen, IDamagable
     [Header("Weapons")]
     [SerializeField] Transform _firePoint;
     [SerializeField] float _fireRate;
-    [Header("Gun")]
     [SerializeField] WeaponData _gunData;
-    [SerializeField] int _startCountBulletGun;
 
-    private MoveInDirection _moveinDirection;
+    private MoveInTarget _moveInTarget;
     private CallbackOverTime _callback;
     private IWeapon<IBullet> _gun;
 
     protected override void InitActivities()
     {
-        _moveinDirection = new MoveInDirection(transform);
-        _activities.Add(_moveinDirection);
+        _moveInTarget = new MoveInTarget(transform,  new Vector3(0, 1, 0));
+        _activities.Add(_moveInTarget);
 
         _callback = new CallbackTimeInfinite(transform, _fireRate, Fire);
         _activities.Add(_callback);
@@ -32,26 +30,14 @@ public class Alien : ObjectBehaviour, IObjectScreen, IDamagable
         _gun = gun;
     }
 
+    //used to change direction
     public void Init(ScreenCoordinator2D screenCoordinator)
     {
-        if (transform.position.x >= screenCoordinator.Center.x)
-        {
-            _moveinDirection.SetDirection(Vector3.left);
-
-        }
-        else if(transform.position.x < screenCoordinator.Center.x)
-        {
-            _moveinDirection.SetDirection(Vector3.right);
-
-        }
     }
 
     protected override void Start()
     {
-        _moveinDirection.SetSpeed(_moveData.Speed);
-        _moveinDirection.SetAcceleration(_moveData.Acceleration);
-
-        _gun.SetMaxCountBullets(_startCountBulletGun);
+        _moveInTarget.SetSpeed(_moveData.Speed);
 
         base.Start();
     }
@@ -75,7 +61,12 @@ public class Alien : ObjectBehaviour, IObjectScreen, IDamagable
     }
     public void Destroy()
     {
-        //other logic about Destroy
+        //execute logic about Destroy
         Destroy(gameObject);
+    }
+
+    public void SetTarget(Transform target)
+    {
+        _moveInTarget.SetTarget(target);
     }
 }

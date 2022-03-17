@@ -33,13 +33,13 @@ public abstract class ObjectBehaviour : MonoBehaviour
         }
     }
 
-    protected virtual void Stop()
+  /*  protected virtual void Stop()
     {
         foreach (var item in _activities)
         {
             item.Stop();
         }
-    }
+    }*/
     public void StartAllActivities()
     {
         Start();
@@ -47,7 +47,7 @@ public abstract class ObjectBehaviour : MonoBehaviour
     }
     public void StopAllActivities()
     {
-        Stop();
+       // Stop();
         _isStopActivities = true;
     }
 }

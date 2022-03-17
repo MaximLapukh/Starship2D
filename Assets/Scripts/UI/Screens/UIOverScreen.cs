@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UIOverScreen : UIScreenController
 {
+    [Header("Links")]
     [SerializeField] TextMeshProUGUI _textScore;
     public override string GetId()
     {

@@ -5,9 +5,8 @@ using UnityEngine;
 
 public interface IWeapon<TBullet>
 {
-    public event Action<GameObject> HadHit;
+    public event Action<GameObject> HadBulletHit;
     public void Fire();
     public int GetCountBullets();
-    public void SetMaxCountBullets(int count);
     public float GetReloadTime();
 }

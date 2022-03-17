@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: GunAlien
   m_EditorClassIdentifier: 
   PrefBullet: {fileID: 4338045724019608190, guid: e267d169f919db7418196ec61dc81006, type: 3}
+  MaxTotalBullets: 5
   ReloadTime: 1

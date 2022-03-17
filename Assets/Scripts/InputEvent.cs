@@ -8,7 +8,9 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class InputEvent : MonoBehaviour
 {
+    [Header("Action")]
     [SerializeField] InputAction _inputAction;
+    [Header("Event")]
     public UnityEvent<CallbackContext> HadAction;
     void Start()
     {

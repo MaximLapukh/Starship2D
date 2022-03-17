@@ -5,27 +5,23 @@ using UnityEngine;
 
 public class Gun : ActivityBase<Transform>, IWeapon<IBullet>
 {
-    public event Action<GameObject> HadHit = delegate { };
+    public event Action<GameObject> HadBulletHit = delegate { };
 
     protected Transform _firePoint;
     protected WeaponData _weaponData;
 
-    protected int _countBullets;
-    protected int _maxCountBullets;
+    protected int _bullets;
+    protected int _maxBullets;
     protected float _reloadTime;
     public Gun(Transform t, in Transform firePoint, in WeaponData weaponData) : base(t)
     {
         _firePoint = firePoint;
         _weaponData = weaponData;
+        _bullets = weaponData.MaxTotalBullets;
     }
     public int GetCountBullets()
     {
-        return _countBullets;
-    }
-    public void SetMaxCountBullets(int count)
-    {
-        _countBullets = count;
-        _maxCountBullets = count;
+        return _bullets;
     }
    
     public float GetReloadTime()
@@ -35,14 +31,14 @@ public class Gun : ActivityBase<Transform>, IWeapon<IBullet>
 
     public void Fire()
     {
-        if (_reloadTime <= 0 && _countBullets > 0)
+        if (_reloadTime <= 0 && _bullets > 0)
         {
             GameObject bulletObj = GameObject.Instantiate(_weaponData.PrefBullet, _firePoint.position, _firePoint.rotation);
             IBullet bullet = bulletObj.GetComponent<IBullet>();
             bullet.Init(_firePoint);
-            bullet.HadHit += HadHit.Invoke;
+            bullet.HadHit += HadBulletHit.Invoke;
 
-            _countBullets--;
+            _bullets--;
             _reloadTime = _weaponData.ReloadTime;
 
         }

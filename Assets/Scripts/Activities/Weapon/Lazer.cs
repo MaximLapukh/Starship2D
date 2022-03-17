@@ -16,11 +16,11 @@ public class Lazer : Gun
 
     public override void Update()
     {
-        if(_countBullets < _maxCountBullets)
+        if(_bullets < _maxBullets)
         {
             if(_timer <= 0)
             {
-                _countBullets++;
+                _bullets++;
                 _timer = _rollback;
             }
             else
@@ -31,7 +31,7 @@ public class Lazer : Gun
 
         base.Update();
     }
-    public float GetRollbackBullet()
+    public float GetRollback()
     {
         return _timer;
     }

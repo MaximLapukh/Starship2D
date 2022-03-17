@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+//this can be bad solve since i never trying do like that(this experimental solve)
 public class EventGame : MonoBehaviour
 {
+    [Header("Events")]
     public UnityEvent HadAwake;
     public UnityEvent HadStart;
     public UnityEvent HadOver;

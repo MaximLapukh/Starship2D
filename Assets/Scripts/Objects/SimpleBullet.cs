@@ -40,7 +40,7 @@ public class SimpleBullet : ObjectBehaviour, IBullet
     }
     public void Destroy()
     {
-        //other logic about Destroy
+        //execute logic about Destroy
         Destroy(gameObject);
     }
 
