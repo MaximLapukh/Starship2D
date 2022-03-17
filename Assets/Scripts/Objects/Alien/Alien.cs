@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Alien : ObjectBehaviour, IObjectScreen, IFollowable, IDamagable
@@ -16,6 +13,13 @@ public class Alien : ObjectBehaviour, IObjectScreen, IFollowable, IDamagable
     private MoveInTarget _moveInTarget;
     private CallbackOverTime _callback;
     private IWeapon<IBullet> _gun;
+
+    private AlienLogic _alienLogic;
+    private new void Awake()
+    {
+        base.Awake();
+        _alienLogic = new AlienLogic();
+    }
 
     protected override void InitActivities()
     {
@@ -44,20 +48,16 @@ public class Alien : ObjectBehaviour, IObjectScreen, IFollowable, IDamagable
 
     private void Fire()
     {
-        _firePoint.localRotation = ScreenCoordinator2D.GetRndAngels(0, 359, new Vector3(0, 0, 1));
-        _gun.Fire();
+        _alienLogic.Fire(_gun, _firePoint);
+        
     }
-    public void Hit()
+    public void Hit(GameObject obj)
     {
         Destroy();
     }
     public void Crash(GameObject obj)
     {
-        if (obj.gameObject.TryGetComponent(out IDamagable damagable))
-        {
-            damagable.Hit();
-            Destroy();
-        }
+        _alienLogic.Crash(obj, gameObject, Destroy);
     }
     public void Destroy()
     {

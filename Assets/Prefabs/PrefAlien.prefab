@@ -263,11 +263,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3083098021463272305}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3725806f51b5b3c4abe7d49a26dfbc17, type: 3}
+  m_Script: {fileID: 11500000, guid: be586a87220590b4aa199f202b88dae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _moveData: {fileID: 11400000, guid: f37b66103344f684a97bc48a261eee47, type: 2}
   _firePoint: {fileID: 3083098021093246203}
   _fireRate: 2
   _gunData: {fileID: 11400000, guid: 071dc26bc86dc6142852dd7f8f065f75, type: 2}
-  _startCountBulletGun: 5

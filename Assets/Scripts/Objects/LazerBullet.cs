@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserBullet : ObjectBehaviour, IBullet
+//I'm not adding the logic class here because this class is simple(<40 strings of code)
+public class LazerBullet : ObjectBehaviour, IBullet
 {
     public event Action<GameObject> HadHit = delegate { };
 
@@ -32,7 +33,7 @@ public class LaserBullet : ObjectBehaviour, IBullet
     {
         if (obj.gameObject.TryGetComponent(out IDamagable damagable))
         {
-            damagable.Hit();
+            damagable.Hit(gameObject);
             HadHit.Invoke(obj);
         }
     }

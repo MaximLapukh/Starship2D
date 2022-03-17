@@ -13,12 +13,13 @@ public class Asteroid : ObjectBehaviour, IDamagable, IObjectScreen
     private MoveInDirection _moveinDirection;
     private Decay _decay;
 
+    private AsteroidLogic _asteroidLogic;
     //bad look
     private new void Awake()
     {
         base.Awake();
-        
-        transform.rotation = ScreenCoordinator2D.GetRndAngels(0, 359, new Vector3(0, 0, 1));
+        _asteroidLogic = new AsteroidLogic();
+        _asteroidLogic.SetRotation(transform);
     }
     protected override void InitActivities()
     {
@@ -31,8 +32,7 @@ public class Asteroid : ObjectBehaviour, IDamagable, IObjectScreen
 
     public void Init(ScreenCoordinator2D screenCoordinator)
     {
-        screenCoordinator.LookToCenter(transform, new Vector3(0, 90, 0));
-        transform.rotation *= ScreenCoordinator2D.GetRndAngels(0, 90, new Vector3(0, 0, 1));
+        _asteroidLogic.Init(transform, screenCoordinator);
     }
     protected override void Start()
     {
@@ -42,18 +42,13 @@ public class Asteroid : ObjectBehaviour, IDamagable, IObjectScreen
 
         base.Start();
     }
-    public void Hit()
+    public void Hit(GameObject obj)
     {
-        _decay.DecayOnObjects();
-        Destroy();        
+        _asteroidLogic.Hit(obj, _decay, Destroy);    
     }
     public void Crash(GameObject obj)
     {
-        if (obj.gameObject.TryGetComponent(out IDamagable damagable))
-        {
-            damagable.Hit();
-            Destroy();
-        }
+        _asteroidLogic.Crash(obj, gameObject, Destroy);
     }
     public void Destroy()
     {

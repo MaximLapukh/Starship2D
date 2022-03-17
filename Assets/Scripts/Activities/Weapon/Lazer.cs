@@ -16,7 +16,7 @@ public class Lazer : Gun
 
     public override void Update()
     {
-        if(_bullets < _maxBullets)
+        if(_bullets < _weaponData.MaxTotalBullets)
         {
             if(_timer <= 0)
             {

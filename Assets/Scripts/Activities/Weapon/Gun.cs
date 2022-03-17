@@ -11,7 +11,6 @@ public class Gun : ActivityBase<Transform>, IWeapon<IBullet>
     protected WeaponData _weaponData;
 
     protected int _bullets;
-    protected int _maxBullets;
     protected float _reloadTime;
     public Gun(Transform t, in Transform firePoint, in WeaponData weaponData) : base(t)
     {

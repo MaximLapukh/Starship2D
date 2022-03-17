@@ -14,8 +14,7 @@ public class CallbackTimeInfinite : CallbackOverTime
 
     public override void Update()
     {
+        if (_timer <= 0) InvokeCallback(_duration, _callback); 
         base.Update();
-
-        if (_timer <= 0) _timer = _duration;
     }
 }

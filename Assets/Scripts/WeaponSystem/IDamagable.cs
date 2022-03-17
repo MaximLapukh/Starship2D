@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IDamagable 
 {
-    public void Hit();
+    public void Hit(GameObject obj);
 }

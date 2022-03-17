@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//I'm not adding the logic class here because this class is simple(<40 strings of code)
 public class SimpleBullet : ObjectBehaviour, IBullet
 {
     public event Action<GameObject> HadHit = delegate { };
@@ -33,7 +34,7 @@ public class SimpleBullet : ObjectBehaviour, IBullet
     {
         if (obj.gameObject.TryGetComponent(out IDamagable damagable))
         {
-            damagable.Hit();
+            damagable.Hit(gameObject);
             HadHit.Invoke(obj);
             Destroy();
         }

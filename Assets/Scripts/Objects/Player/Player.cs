@@ -34,6 +34,13 @@ public class Player : ObjectBehaviour, IDamagable
     private IWeapon<IBullet> _gun;
     private IWeapon<IBullet> _laser;
 
+    private PlayerLogic _playerLogic;
+
+    private new void Awake()
+    {
+        base.Awake();
+        _playerLogic = new PlayerLogic();
+    }
     protected override void InitActivities()
     {
         _moveinDirection = new MoveInDirScreen(transform, _camera);
@@ -74,15 +81,14 @@ public class Player : ObjectBehaviour, IDamagable
         base.Update();
     }
 
-    private void AddScore(GameObject hitObj)
+    private void AddScore(GameObject obj)
     {
-        //idea: add different score depends at hitObj in pattern like factory
-        _scoreCounter.AddScore(1);
+        _playerLogic.AddScore(obj, _scoreCounter);
     }
 
-    public void Hit()
+    public void Hit(GameObject obj)
     {
-        _healthCounter.LessHealth(1);
+        _playerLogic.Hit(obj, _healthCounter);
     }
     private void Dead()
     {
@@ -91,9 +97,8 @@ public class Player : ObjectBehaviour, IDamagable
 
     public void ChangeDirection(CallbackContext context)
     {
-        var temp = context.ReadValue<Vector2>();
-        var direction = new Vector3(0, 0, temp.x * -1);
-        _regularRotate.SetDirection(direction);
+        var direction = context.ReadValue<Vector2>();
+        _playerLogic.ChangeDirection(direction, _regularRotate);
     }
     public void MoveForward(CallbackContext context)
     {
@@ -125,6 +130,7 @@ public class Player : ObjectBehaviour, IDamagable
                 break;
         }
     }
+    //thinks: create class in every frame is bad solve
     private InfoProperty CollectProperties()
     {
         var infoProperty = new InfoProperty();
