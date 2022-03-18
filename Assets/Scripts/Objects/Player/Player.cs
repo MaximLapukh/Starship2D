@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -15,16 +12,16 @@ public class Player : ObjectBehaviour, IDamagable
 
     [Header("Links")]
     [SerializeField] Camera _camera;
-    [SerializeField] UIManager _uiManager;
-
 
     [Header("Weapons")]
     [SerializeField] Transform _firePoint;
     [SerializeField] WeaponData _gunData;
     [SerializeField] LazerData _laserData;
 
-    [Header("Event")]
-    public UnityEvent<InfoProperty> HadDead;
+    [Header("Events")]
+    // thinks: disable input should place here
+    public UnityEvent<InfoProperty> HadDead; 
+    public UnityEvent<InfoProperty> HadUpdateInfo;
 
     private MoveInDirection _moveinDirection;
     private RegularRotate _regularRotate;
@@ -77,7 +74,7 @@ public class Player : ObjectBehaviour, IDamagable
     }
     protected override void Update()
     {
-        UpdateInfo();
+        HadUpdateInfo.Invoke(CollectProperties());
         base.Update();
     }
 
@@ -92,6 +89,7 @@ public class Player : ObjectBehaviour, IDamagable
     }
     private void Dead()
     {
+        _playerLogic.Dead(this);
         HadDead.Invoke(CollectProperties());
     }
 
@@ -143,9 +141,5 @@ public class Player : ObjectBehaviour, IDamagable
         infoProperty.ReloadLaser = _laser.GetReloadTime();
         infoProperty.RollbackLaser = ((Lazer)_laser).GetRollback();
         return infoProperty;
-    }
-    private void UpdateInfo()
-    {
-        _uiManager.ShowInfo(CollectProperties());
     }
 }

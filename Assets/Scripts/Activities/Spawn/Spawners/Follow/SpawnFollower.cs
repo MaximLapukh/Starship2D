@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnFollower<TObject> : ActivityBase<Transform>  where TObject : MonoBehaviour, IObjectScreen, IFollowable

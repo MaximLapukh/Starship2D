@@ -2891,17 +2891,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2040032862 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
-  m_PrefabInstance: {fileID: 7157016170422498374}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20eec7eef0085844396b798a769d2191, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2040032863 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7157016170558836246, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
@@ -3750,100 +3739,48 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 519420031}
     - target: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
-      propertyPath: _laserData
-      value: 
-      objectReference: {fileID: 11400000, guid: 6ec9554776da8f34eb8cc671b9e865a9, type: 2}
-    - target: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
-      propertyPath: _maxHealth
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
-      propertyPath: _uiManager
-      value: 
-      objectReference: {fileID: 129438091}
-    - target: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
       propertyPath: HadDead.m_PersistentCalls.m_Calls.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
-      propertyPath: HadDead.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
       propertyPath: HadDead.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
-      propertyPath: HadDead.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
       propertyPath: HadDead.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 2040032862}
+      objectReference: {fileID: 1686286566}
     - target: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
       propertyPath: HadDead.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 1686286566}
+      objectReference: {fileID: 129438091}
     - target: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
       propertyPath: HadDead.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
       objectReference: {fileID: 129438091}
     - target: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
-      propertyPath: HadDead.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
-      propertyPath: HadDead.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
-      propertyPath: HadDead.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
       propertyPath: HadDead.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: StopAllActivities
-      objectReference: {fileID: 0}
-    - target: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
-      propertyPath: HadDead.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: OverPlay
       objectReference: {fileID: 0}
     - target: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
-      propertyPath: HadDead.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      propertyPath: HadDead.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: ShowOver
       objectReference: {fileID: 0}
     - target: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
-      propertyPath: HadDead.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: ObjectBehaviour, Assembly-CSharp
-      objectReference: {fileID: 0}
+      propertyPath: HadUpdateInfo.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 129438091}
     - target: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
-      propertyPath: HadDead.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      propertyPath: HadDead.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: EventGame, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
-      propertyPath: HadDead.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      propertyPath: HadDead.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: UIManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
-      propertyPath: HadDead.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
-      propertyPath: HadDead.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7157016170558836233, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
-      propertyPath: HadDead.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7157016170558836235, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
       propertyPath: m_Name
       value: PrefPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 7157016170558836246, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f31335b58f972cd42a4b93ea8a5cdb38, type: 3}

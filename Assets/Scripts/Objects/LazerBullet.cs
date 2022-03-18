@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 //I'm not adding the logic class here because this class is simple(<40 strings of code)

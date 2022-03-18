@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 internal class PlayerLogic
@@ -19,5 +17,10 @@ internal class PlayerLogic
     internal void AddScore(GameObject obj, ScoreCounter scoreCounter)
     {
         scoreCounter.AddScore(1);
+    }
+
+    internal void Dead(Player player)
+    {
+        player.StopAllActivities();
     }
 }
